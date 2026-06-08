@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/02 11:22:01 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/08 17:58:29 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/08 18:11:06 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -92,6 +92,8 @@ class Parser:
                         max_drones = int(value)
                     except ValueError:
                         raise ParseError(line_nu + 1, "Invalid zone")
+                elif key == "zone":
+                    pass
 
             is_start = line.startswith("start_hub")
             is_end = line.startswith("end_hub")
@@ -106,6 +108,9 @@ class Parser:
             )
             self.graph.add_zone(zone)
             return True
+        return False
+
+    def _parse_connection(self, line_nu: int, line: str) -> bool:
         if line.startswith("connection:"):
             label = line.split(":", 1)[1].strip()
             if "-" not in label:
