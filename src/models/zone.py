@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 10:29:24 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/08 11:21:27 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/08 17:59:51 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -69,3 +69,6 @@ class Zone:
         if not isinstance(value, Zone):
             raise NotImplementedError()
         return self.name == value.name
+
+    def __repr__(self) -> str:
+        return self.name
