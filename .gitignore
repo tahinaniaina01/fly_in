@@ -2,3 +2,6 @@
 maps
 .venv
 __pycache__
+*.map
+.mypy_cache
+test.py 

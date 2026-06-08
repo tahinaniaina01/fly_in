@@ -1,5 +1,5 @@
 --index-url https://pypi.org/simple
---extra-index-url https://nexus.42antananarivo.mg/repository/pypi/simple
+# --extra-index-url https://nexus.42antananarivo.mg/repository/pypi/simple
 
 flake8
 mypy

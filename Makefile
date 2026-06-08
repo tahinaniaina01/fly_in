@@ -10,10 +10,10 @@ install: $(VENV)/bin/activate
 	$(PIP) install -r $(REQ)
 
 $(VENV)/bin/activate:
-	python3 -m venv $(VENV)
+	python3 -m virtualenv $(VENV)
 
 run:
-	$(PYTHON) main.py
+	$(PYTHON) src/main.py test.map
 
 debug:
 	$(PYTHON) -m pyb main.py
