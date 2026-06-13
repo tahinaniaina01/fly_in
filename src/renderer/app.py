@@ -7,19 +7,33 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/01 16:41:53 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/09 13:35:40 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 import pygame
-
+from models.graph import Graph
+from typing import Any
+from random import randint
 
 class App:
-    def __init__(self, w: int = 800, h: int = 600):
+    def __init__(self, graph: Graph, w: int = 600, h: int = 400):
         self.running = False
         self.width = w
         self.height = h
         self.screen = None
+        self.clock = pygame.time.Clock()
+        self.graph = Graph
+        self.grid: list[Any] = []
+
+    def _init(self):
+        for _ in range(8):
+            tmp = []
+            for _ in range(12):
+                s = pygame.Surface((50, 50))
+                s.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
+                tmp.append(s)
+            self.grid.append(tmp)
 
     def handle_event(self):
         for event in pygame.event.get():
@@ -27,10 +41,11 @@ class App:
                 self.running = False
 
     def update(self):
-        pass
+        self.screen.fill(pygame.Color(255, 255, 255))
+        
 
     def display(self):
-        pass
+        pygame.display.update()
 
     def run(self):
         self.screen = pygame.display.set_mode((self.width, self.height))
@@ -39,5 +54,6 @@ class App:
             self.handle_event()
             self.update()
             self.display()
+            self.clock.tick(60)
 
         pygame.quit()

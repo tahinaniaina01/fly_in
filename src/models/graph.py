@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 12:59:07 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/08 17:57:04 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/09 11:48:53 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -36,6 +36,10 @@ class Graph:
     def __repr__(self):
         res = "Zones:\n"
         for key, val in self.zones.items():
+            res += f"\t{key}: {val}\n"
+        res += "\n"
+        res += "Connection:\n"
+        for key, val in self.connections.items():
             res += f"\t{key}: {val}\n"
         res += "\n"
         return res

@@ -7,13 +7,13 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/02 11:22:01 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/08 18:11:06 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/09 11:54:29 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 
 from dataclasses import dataclass, field
-from models import Graph, Zone, Connection
+from models import Graph, Zone, Connection, ZoneType
 
 
 class ParseError(Exception):
@@ -39,6 +39,9 @@ class Parser:
                 continue
             if self._parse_zone(line_nu, line[0]):
                 continue
+            if self._parse_connection(line_nu, line[0]):
+                continue
+            raise ParseError(line_nu, "Invalid syntax")
 
         return (self.nb_drones, self.graph)
 
@@ -80,6 +83,7 @@ class Parser:
 
             color: str | None = None
             max_drones: int | None = None
+            zone_type: ZoneType = ZoneType.NORMAL
             for prop in props.split():
                 if "=" not in prop:
                     continue
@@ -93,7 +97,10 @@ class Parser:
                     except ValueError:
                         raise ParseError(line_nu + 1, "Invalid zone")
                 elif key == "zone":
-                    pass
+                    try:
+                        zone_type = ZoneType(value)
+                    except ValueError:
+                        raise ParseError(line_nu, f"unknown zone type {value}")
 
             is_start = line.startswith("start_hub")
             is_end = line.startswith("end_hub")
@@ -104,6 +111,7 @@ class Parser:
                 color=color,
                 max_drones=max_drones if max_drones is not None else 1,
                 is_start=is_start,
+                zone_type=zone_type,
                 is_end=is_end,
             )
             self.graph.add_zone(zone)
@@ -111,8 +119,10 @@ class Parser:
         return False
 
     def _parse_connection(self, line_nu: int, line: str) -> bool:
+        if line_nu == 92:
+            print(line)
         if line.startswith("connection:"):
-            label = line.split(":", 1)[1].strip()
+            label = line.split(":", 1)[1].strip().split()[0]
             if "-" not in label:
                 raise ParseError(line_nu + 1, "Invalid connection")
 

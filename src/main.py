@@ -7,11 +7,11 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/08 17:50:19 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/09 13:25:06 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
-# from renderer import App
+from renderer import App
 from sys import argv
 from parser import Parser
 
@@ -26,3 +26,6 @@ if __name__ == '__main__':
         print(graph)
     except Exception as err:
         print(err)
+
+    app = App(graph)
+    app.run()
