@@ -7,15 +7,13 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 12:50:44 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/15 13:11:48 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 import pygame
 from models.graph import Graph
-from typing import Any
-from random import randint
-
+from .camera import Camera
 
 class App:
     def __init__(self, graph: Graph, w: int = 600, h: int = 400):
@@ -25,17 +23,8 @@ class App:
         self.screen = None
         self.clock = pygame.time.Clock()
         self.graph = Graph
-        self.grid: list[Any] = []
-        self._init()
-
-    def _init(self) -> None:
-        for i in range(8):
-            tmp: list[Any] = []
-            for j in range(12):
-                s = pygame.Surface((50, 50))
-                s.fill((randint(0, 255), randint(0, 255), randint(0, 255)))
-                tmp.append((s, s.get_rect(topleft=(j*50, i*50))))
-            self.grid.append(tmp)
+        self.camera = Camera()
+        
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -47,9 +36,7 @@ class App:
 
     def display(self):
         self.screen.fill(pygame.Color(255, 255, 255))
-        for i in range(8):
-            for j in range(12):
-                self.screen.blit(self.grid[i][j][0], self.grid[i][j][1])
+        pass
 
     def update(self):
         pygame.display.flip()
