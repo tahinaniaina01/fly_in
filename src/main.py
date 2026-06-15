@@ -7,13 +7,15 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/09 13:25:06 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/15 14:52:21 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 from renderer import App
 from sys import argv
 from parser import Parser
+from utils import WIN_HEIGHT, WIN_WIDTH
+
 
 if __name__ == '__main__':
     if len(argv) != 2:
@@ -27,5 +29,5 @@ if __name__ == '__main__':
     except Exception as err:
         print(err)
 
-    app = App(graph)
+    app = App(graph, WIN_WIDTH, WIN_HEIGHT)
     app.run()

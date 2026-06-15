@@ -2,26 +2,23 @@
 # ########################################################################### #
 #   shebang: 1                                                                #
 #                                                          :::      ::::::::  #
-#   graph_rendrer.py                                     :+:      :+:    :+:  #
+#   point.py                                             :+:      :+:    :+:  #
 #                                                      +:+ +:+         +:+    #
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
-#   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 14:40:20 by trakotos           ###   ########.fr      #
+#   Created: 2026/06/15 14:39:51 by trakotos            #+#    #+#            #
+#   Updated: 2026/06/15 14:44:24 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
-from models.graph import Graph
-from .camera import Camera
-import pygame
+from __future__ import annotations
+from dataclasses import dataclass
 
 
-class GraphRenderer:
-    def __init__(self, graph: Graph):
-        self.graph = graph
-        self.zones = graph.zones
-        self.connections = graph.connections
-        
+@dataclass
+class Point:
+    x: int = 0
+    y: int = 0
 
-    def render(self, screen: pygame.Surface, camera: Camera) -> None:
-        pass
+    def __add__(self, other: Point) -> Point:
+        return Point(self.x + other.x, self.y + other.y)

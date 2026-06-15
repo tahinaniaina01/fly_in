@@ -2,26 +2,22 @@
 # ########################################################################### #
 #   shebang: 1                                                                #
 #                                                          :::      ::::::::  #
-#   graph_rendrer.py                                     :+:      :+:    :+:  #
+#   utils.py                                             :+:      :+:    :+:  #
 #                                                      +:+ +:+         +:+    #
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
-#   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 14:40:20 by trakotos           ###   ########.fr      #
+#   Created: 2026/06/15 14:40:03 by trakotos            #+#    #+#            #
+#   Updated: 2026/06/15 14:49:55 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
-from models.graph import Graph
-from .camera import Camera
-import pygame
+from .point import Point
 
+WIN_WIDTH = 800
+WIN_HEIGHT = 600
 
-class GraphRenderer:
-    def __init__(self, graph: Graph):
-        self.graph = graph
-        self.zones = graph.zones
-        self.connections = graph.connections
-        
-
-    def render(self, screen: pygame.Surface, camera: Camera) -> None:
-        pass
+ZONE_SIZE = 50
+ZONE_ORIGIN = Point(
+    WIN_WIDTH // 2 - ZONE_SIZE // 2,
+    WIN_HEIGHT // 2 - ZONE_SIZE // 2,
+)
