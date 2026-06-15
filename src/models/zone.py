@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 10:29:24 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/08 18:10:49 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/15 13:03:29 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -41,7 +41,6 @@ class ZoneType(str, Enum):
             ZoneType.BLOCKED: 9999
         }
         return weight[self]
-
 
 
 @dataclass
