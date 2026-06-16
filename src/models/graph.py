@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 12:59:07 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/09 11:48:53 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/16 14:20:32 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -29,7 +29,7 @@ class Graph:
         self.zones[zone.name] = zone
 
     def add_connection(self, conn: Connection) -> None:
-        if conn.label in self.connections:
+        if conn.label in self.connections.keys():
             raise ValueError(f"Duplicate connection {conn.label}")
         self.connections[conn.label] = conn
 

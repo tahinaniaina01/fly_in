@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/02 11:22:01 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/09 11:54:29 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/16 14:30:04 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -119,20 +119,20 @@ class Parser:
         return False
 
     def _parse_connection(self, line_nu: int, line: str) -> bool:
-        if line_nu == 92:
-            print(line)
         if line.startswith("connection:"):
-            label = line.split(":", 1)[1].strip().split()[0]
+            label = line.split(":", 1)[1].strip().split()[0].strip()
             if "-" not in label:
                 raise ParseError(line_nu + 1, "Invalid connection")
 
             zone_a_name, zone_b_name = label.split("-", 1)
+            print((zone_a_name, zone_b_name))
             try:
                 zone_a = self.graph.zones[zone_a_name]
                 zone_b = self.graph.zones[zone_b_name]
             except KeyError:
                 raise ParseError(line_nu + 1, "Unknown zone in connection")
+            conn = Connection(zone_a, zone_b)
+            self.graph.add_connection(conn)
 
-            self.graph.add_connection(Connection(zone_a, zone_b))
             return True
         return False

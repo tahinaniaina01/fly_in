@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 14:52:21 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/16 14:23:33 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -22,12 +22,11 @@ if __name__ == '__main__':
         print("ERROR: usage python src/main.py <maps.txt>")
         exit(1)
     parser = Parser()
-    try:
-        nb_drones, graph = parser.parse(argv[1])
-        print(f"nombres de drones: {nb_drones}")
-        print(graph)
-    except Exception as err:
-        print(err)
-
+    # try:
+    nb_drones, graph = parser.parse(argv[1])
+    print(f"nombres de drones: {nb_drones}")
+    print(graph)
+    # except Exception as err:
+    #     print(err)
     app = App(graph, WIN_WIDTH, WIN_HEIGHT)
     app.run()
