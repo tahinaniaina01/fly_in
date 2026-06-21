@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 14:54:20 by trakotos           ###   ########.fr      #
+#   Updated: 2026/06/21 17:05:15 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -49,6 +49,8 @@ class App:
             self.camera.zoom_in()
         if keys[pygame.K_z]:
             self.camera.zoom_out()
+        if keys[pygame.K_q]:
+            self.running = False
 
     def display(self) -> None:
         if self.screen is None:
