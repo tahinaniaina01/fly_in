@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 16:42:18 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 16:44:11 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -58,6 +58,24 @@ class PathFinder:
         raise Exception("Path not found")
 
     def _try_to_wait(
+        self,
+        visited: set[State],
+        heap: list[tuple[int, int, Zone]],
+        previous: dict[State, State],
+        cur_state: State,
+        counter: int
+    ) -> int:
+        next_state = State(cur_state.turn + 1, cur_state.zone)
+        if next_state in visited:
+            return counter
+        if not self.reservations.is_free(next_state.turn, next_state.zone):
+            return counter
+        if next_state not in previous:
+            previous[next_state] = cur_state
+            heappush(heap, (next_state.turn, counter, next_state.zone))
+        return counter
+
+    def _try_to_move(
         self,
         visited: set[State],
         heap: list[tuple[int, int, Zone]],
