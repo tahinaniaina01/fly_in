@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/16 14:45:28 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/25 15:41:54 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -15,7 +15,6 @@ from models.graph import Graph
 from renderer.zone_renderer import ZoneRenderer
 from .camera import Camera
 import pygame
-from random import randint
 
 
 class GraphRenderer:
