@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/21 17:05:15 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 10:47:31 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -55,7 +55,7 @@ class App:
     def display(self) -> None:
         if self.screen is None:
             return
-        self.screen.fill(pygame.Color(255, 255, 255))
+        self.screen.fill(pygame.Color(190, 190, 190))
         self.graph_renderer.render(self.screen, self.camera)
 
     def update(self):

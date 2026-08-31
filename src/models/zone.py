@@ -7,14 +7,13 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 10:29:24 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 13:03:29 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 11:02:23 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 from __future__ import annotations
 from enum import Enum
 from dataclasses import dataclass, field
-
 
 class ZoneType(str, Enum):
     NORMAL = "normal"

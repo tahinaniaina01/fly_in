@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/25 15:41:54 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 10:47:07 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -24,7 +24,7 @@ class GraphRenderer:
         self.connections = graph.connections
         self.zone_renderers: dict[str, ZoneRenderer] = {}
         for key, val in self.zones.items():
-            self.zone_renderers[key] = ZoneRenderer(x=val.x, y=val.y)
+            self.zone_renderers[key] = ZoneRenderer(x=val.x, y=val.y, color=val.color)
 
     def render(self, screen: pygame.Surface, camera: Camera) -> None:
         for conn in self.connections.values():
@@ -39,7 +39,7 @@ class GraphRenderer:
             )
             pygame.draw.line(
                 screen,
-                (0, 0, 255),
+                (0, 0, 0),
                 origin_p,
                 end_p,
                 2

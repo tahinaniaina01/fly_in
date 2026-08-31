@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 12:59:07 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/16 14:20:32 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 13:09:33 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -32,6 +32,13 @@ class Graph:
         if conn.label in self.connections.keys():
             raise ValueError(f"Duplicate connection {conn.label}")
         self.connections[conn.label] = conn
+
+    def links(self, zone: Zone) -> list[Connection]:
+        conns = []
+        for conn in self.connections.values():
+            if conn.include(zone):
+                conns.append(conn)
+        return conns
 
     def __repr__(self):
         res = "Zones:\n"
