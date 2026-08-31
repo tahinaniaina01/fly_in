@@ -2,12 +2,22 @@
 # ########################################################################### #
 #   shebang: 1                                                                #
 #                                                          :::      ::::::::  #
-#   __init__.py                                          :+:      :+:    :+:  #
+#   state.py                                             :+:      :+:    :+:  #
 #                                                      +:+ +:+         +:+    #
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
-#   Created: 2026/08/31 17:27:39 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 17:27:41 by trakotos           ###   ########.fr      #
+#   Created: 2026/08/31 17:23:07 by trakotos            #+#    #+#            #
+#   Updated: 2026/08/31 17:24:28 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
+
+from __future__ import annotations
+from dataclasses import dataclass
+from ..models.zone import Zone
+
+
+@dataclass
+class State:
+    turn: int
+    zone: Zone
 

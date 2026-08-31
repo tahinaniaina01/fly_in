@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 16:44:11 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 17:24:04 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -18,12 +18,7 @@ from ..models.graph import Graph
 from ..models.zone import Zone
 from ..models.connection import Connection
 from heapq import heappop, heappush
-
-
-@dataclass
-class State:
-    turn: int
-    zone: Zone
+from .state import State
 
 @dataclass
 class PathFinder:
@@ -47,10 +42,16 @@ class PathFinder:
             visited.add(cur_state)
 
             if zone == self.graph.end_zone:
-                # return path
-                return []
+                return self._construct_path(
+                    State(start_time, self.graph.start_zone),
+                    cur_state,
+                    previous
+                )
 
             counter = self._try_to_wait(
+                visited, heap, previous, cur_state, counter
+            )
+            counter = self._try_to_move(
                 visited, heap, previous, cur_state, counter
             )
 
@@ -73,6 +74,8 @@ class PathFinder:
         if next_state not in previous:
             previous[next_state] = cur_state
             heappush(heap, (next_state.turn, counter, next_state.zone))
+            self.reservations.reserve(next_state.turn, next_state.zone)
+            counter += 1
         return counter
 
     def _try_to_move(
@@ -83,12 +86,32 @@ class PathFinder:
         cur_state: State,
         counter: int
     ) -> int:
-        if cur_state in visited:
-            return counter
-        next_state = State(cur_state.turn + 1, cur_state.zone)
-        if not self.reservations.is_free(next_state.turn, next_state.zone):
-            return counter
-        if next_state not in previous:
-            previous[next_state] = cur_state
-            heappush(heap, (next_state.turn, counter, next_state.zone))
+        conns = self.graph.links(cur_state.zone)
+        for conn in conns:
+            next_state = State(
+                cur_state.turn + cur_state.zone.zone_type.path_weight,
+                conn.other(cur_state.zone)
+            )
+            if next_state in visited:
+                continue
+            if (
+                not self.reservations.is_free(next_state.turn, conn) or
+                not self.reservations.is_free(next_state.turn, next_state.zone)
+            ):
+                continue
+            if next_state not in previous:
+                previous[next_state] = cur_state
+                heappush(heap, (next_state.turn, counter, next_state.zone))
+                self.reservations.reserve(next_state.turn, next_state.zone)
+                for i in range(1, cur_state.zone.zone_type.path_weight + 1):
+                    self.reservations.reserve(cur_state.turn + i, conn)
+                counter += 1
         return counter
+
+    def _construct_path(self, start: State, end: State, previous: dict[State, State]) -> list[State]:
+        paths = []
+        cur = end
+        while cur != start:
+            paths.append(cur)
+            cur = previous[cur]
+        return paths

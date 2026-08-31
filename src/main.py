@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/16 14:23:33 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 17:26:52 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -15,7 +15,7 @@ from renderer import App
 from sys import argv
 from parser import Parser
 from utils import WIN_HEIGHT, WIN_WIDTH
-
+from path_finder.path_finder import PathFinder
 
 if __name__ == '__main__':
     if len(argv) != 2:
@@ -24,9 +24,10 @@ if __name__ == '__main__':
     parser = Parser()
     # try:
     nb_drones, graph = parser.parse(argv[1])
-    print(f"nombres de drones: {nb_drones}")
-    print(graph)
+    print(f"nombres de drones: {nb_drones}\n")
+        #path_finder = PathFinder(graph)
+        # print(graph)
     # except Exception as err:
     #     print(err)
-    app = App(graph, WIN_WIDTH, WIN_HEIGHT)
-    app.run()
+    # app = App(graph, WIN_WIDTH, WIN_HEIGHT)
+    # app.run()

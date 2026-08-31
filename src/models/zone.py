@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 10:29:24 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 11:02:23 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 16:58:26 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -21,22 +21,22 @@ class ZoneType(str, Enum):
     RESTRICTED = "restricted"
     PRIORITY = "priority"
 
-    @property
-    def mouvement_cost(self) -> int:
-        costs: dict[ZoneType, int] = {
-            ZoneType.PRIORITY: 1,
-            ZoneType.NORMAL: 1,
-            ZoneType.RESTRICTED: 2,
-            ZoneType.BLOCKED: 0
-        }
-        return costs[self]
+    # @property
+    # def mouvement_cost(self) -> int:
+    #     costs: dict[ZoneType, int] = {
+    #         ZoneType.PRIORITY: 1,
+    #         ZoneType.NORMAL: 1,
+    #         ZoneType.RESTRICTED: 2,
+    #         ZoneType.BLOCKED: 0
+    #     }
+    #     return costs[self]
 
     @property
     def path_weight(self) -> int:
         weight: dict[ZoneType, int] = {
             ZoneType.PRIORITY: 1,
-            ZoneType.NORMAL: 2,
-            ZoneType.RESTRICTED: 4,
+            ZoneType.NORMAL: 1,
+            ZoneType.RESTRICTED: 2,
             ZoneType.BLOCKED: 9999
         }
         return weight[self]
