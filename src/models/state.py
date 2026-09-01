@@ -7,17 +7,20 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/08/31 17:23:07 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 17:24:28 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 11:05:34 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 from __future__ import annotations
 from dataclasses import dataclass
-from ..models.zone import Zone
-
+from models.zone import Zone
+from models.connection import Connection
 
 @dataclass
 class State:
     turn: int
-    zone: Zone
+    zone: Zone | Connection
 
+    def __hash__(self) -> int:
+        id = f"{self.turn}-{self.zone}"
+        return hash(id)

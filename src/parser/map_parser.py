@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/02 11:22:01 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/16 14:30:04 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 10:13:58 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -114,6 +114,10 @@ class Parser:
                 zone_type=zone_type,
                 is_end=is_end,
             )
+            if zone.is_start:
+                self.graph.start_zone = zone
+            if zone.is_end:
+                self.graph.end_zone = zone
             self.graph.add_zone(zone)
             return True
         return False
@@ -125,7 +129,6 @@ class Parser:
                 raise ParseError(line_nu + 1, "Invalid connection")
 
             zone_a_name, zone_b_name = label.split("-", 1)
-            print((zone_a_name, zone_b_name))
             try:
                 zone_a = self.graph.zones[zone_a_name]
                 zone_b = self.graph.zones[zone_b_name]

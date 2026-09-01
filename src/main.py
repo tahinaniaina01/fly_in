@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 17:26:52 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 10:54:47 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -22,12 +22,19 @@ if __name__ == '__main__':
         print("ERROR: usage python src/main.py <maps.txt>")
         exit(1)
     parser = Parser()
-    # try:
-    nb_drones, graph = parser.parse(argv[1])
-    print(f"nombres de drones: {nb_drones}\n")
-        #path_finder = PathFinder(graph)
+    try:
+        nb_drones, graph = parser.parse(argv[1])
+        print(f"nombres de drones: {nb_drones}\n")
+        path_finder = PathFinder(graph)
+
+        for i in range(1, 5):
+            print(f"drone {i}:")
+            path = path_finder.get_path()
+            for p in path:
+                print(p)
+            print()
+        app = App(graph, WIN_WIDTH, WIN_HEIGHT)
+        app.run()
         # print(graph)
-    # except Exception as err:
-    #     print(err)
-    # app = App(graph, WIN_WIDTH, WIN_HEIGHT)
-    # app.run()
+    except Exception as err:
+        print(err)

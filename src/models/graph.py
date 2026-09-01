@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 12:59:07 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 13:09:33 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 10:44:19 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -39,6 +39,15 @@ class Graph:
             if conn.include(zone):
                 conns.append(conn)
         return conns
+
+    def get_connection(self, zone1: Zone, zone2: Zone) -> Connection:
+        t = ("", "")
+        if zone1.name < zone2.name:
+            t = (zone1.name, zone2.name)
+        else:
+            t = (zone2.name, zone1.name)
+        key = f"{t[0]}-{t[1]}"
+        return self.connections[key]
 
     def __repr__(self):
         res = "Zones:\n"

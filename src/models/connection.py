@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/08 11:20:06 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 13:08:18 by trakotos           ###   ########.fr      #
+#   Updated: 2026/08/31 17:49:49 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -36,6 +36,9 @@ class Connection:
         if not isinstance(value, Connection):
             return NotImplemented
         return value.label == self.label
+
+    def __hash__(self) -> int:
+        return hash(self.label)
 
     def other(self, zone: Zone) -> Zone | None:
         if zone == self.zone_a:
