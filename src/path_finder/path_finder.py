@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 11:18:49 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 12:19:17 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -132,3 +132,4 @@ class PathFinder:
             self.reservations.reserve(cur.turn, cur.zone)
         paths.reverse()
         return paths
+

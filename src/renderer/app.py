@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/08/31 10:47:31 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 15:15:43 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -15,10 +15,10 @@ import pygame
 from models.graph import Graph
 from .camera import Camera
 from .graph_rendrer import GraphRenderer
-
+from models.drone import Drone
 
 class App:
-    def __init__(self, graph: Graph, w: int = 800, h: int = 600):
+    def __init__(self, graph: Graph, drones: list[Drone] = [], w: int = 800, h: int = 600):
         self.running = False
         self.width = w
         self.height = h
@@ -26,7 +26,7 @@ class App:
         self.clock = pygame.time.Clock()
         self.graph = Graph
         self.camera = Camera()
-        self.graph_renderer = GraphRenderer(graph)
+        self.graph_renderer = GraphRenderer(graph, drones)
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -34,7 +34,7 @@ class App:
                 self.running = False
             if event.type == pygame.KEYUP:
                 if event.key == 32:
-                    print("space pressed")
+                    self.graph_renderer.move()
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
@@ -51,6 +51,7 @@ class App:
             self.camera.zoom_out()
         if keys[pygame.K_q]:
             self.running = False
+            
 
     def display(self) -> None:
         if self.screen is None:

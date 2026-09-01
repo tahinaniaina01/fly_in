@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 12:15:34 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 13:04:27 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
             for p in path:
                 print(p)
             print()
-        app = App(graph, WIN_WIDTH, WIN_HEIGHT)
+        app = App(graph, drones, WIN_WIDTH, WIN_HEIGHT)
         app.run()
         # print(graph)
     except Exception as err:

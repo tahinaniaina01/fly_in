@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 15:29:31 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/16 14:45:49 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 12:49:37 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -16,16 +16,16 @@ from dataclasses import dataclass
 from typing import Any
 import pygame
 
-from utils import ZONE_ORIGIN, Point
+from utils import ZONE_ORIGIN, Point, ZONE_DISTANCE
 from .camera import Camera
-
+from models import Zone
 
 class ZoneRenderer:
     def __init__(
-        self, x: int = 0, y: int = 0,
+        self, zone: Zone,
         color: Any = (255, 0, 0), size: int = 50
     ) -> None:
-        self.coord: Point = Point(x, y) * 100 + ZONE_ORIGIN
+        self.coord: Point = Point(zone.x, zone.y) * ZONE_DISTANCE + ZONE_ORIGIN
         self.color: Any = color
         self.size: int = size
         self.center: Point = self.coord + (self.size // 2)
