@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 12:19:17 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 16:53:54 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -99,7 +99,7 @@ class PathFinder:
             if other is None:
                 other = cur_state.zone
             next_state = State(
-                cur_state.turn + cur_state.zone.zone_type.path_weight,
+                cur_state.turn + other.zone_type.path_weight,
                 other
             )
             if next_state in visited:
@@ -125,10 +125,12 @@ class PathFinder:
         while cur != start:
             n = cur
             cur = previous[cur]
-            paths.append(cur)
-            if n.zone != cur.zone:
+            if n.zone != cur.zone and n.turn - 1 != cur.turn:
                 conn = self.graph.get_connection(n.zone, cur.zone)
-                self.reservations.reserve(n.turn, conn)
+                self.reservations.reserve(n.turn + 1, conn)
+                self.reservations.reserve(n.turn , conn)
+                paths.append(ConnState(n.turn - 1, conn))
+            paths.append(cur)
             self.reservations.reserve(cur.turn, cur.zone)
         paths.reverse()
         return paths

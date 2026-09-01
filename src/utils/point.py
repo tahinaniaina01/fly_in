@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 14:39:51 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/16 13:31:54 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 16:32:16 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -61,5 +61,5 @@ class Point:
         ):
             raise ValueError("Incompatible type")
         if isinstance(other, Point):
-            return Point(self.x + other.x, self.y + other.y)
-        return Point(self.x + other, self.y + other)
+            return Point(self.x // other.x, self.y // other.y)
+        return Point(self.x // other, self.y // other)

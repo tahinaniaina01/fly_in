@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/08/31 17:23:07 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 11:18:02 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 16:17:07 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -29,7 +29,6 @@ class State:
 class ConnState:
     turn: int
     conn: Connection
-    distance: int
 
     def __hash__(self) -> int:
         id = f"{self.turn}-{self.conn}"

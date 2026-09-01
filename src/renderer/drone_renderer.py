@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/09/01 12:25:02 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 15:17:59 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 16:38:23 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -40,6 +40,7 @@ class DroneRenderer:
         self._start_time = 0.0
         self._move_duration = 0.5
         self.path: list[Point] = path
+        print(path)
 
 
 

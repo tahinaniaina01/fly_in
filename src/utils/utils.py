@@ -7,14 +7,14 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 14:40:03 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 13:43:25 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 15:21:48 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 from .point import Point
 
-WIN_WIDTH = 800
-WIN_HEIGHT = 600
+WIN_WIDTH = 1720
+WIN_HEIGHT = 900
 ZONE_DISTANCE = 150
 ZONE_SIZE = 50
 ZONE_ORIGIN = Point(

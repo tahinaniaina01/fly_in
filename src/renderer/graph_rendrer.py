@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 13:59:00 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 16:47:19 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -20,6 +20,7 @@ from models.drone import Drone
 from models.state import State, ConnState
 from utils.point import Point
 from utils.utils import DRONE_SIZE
+from random import randint
 
 class GraphRenderer:
     def __init__(self, graph: Graph, drones: list[Drone] = []):
@@ -36,8 +37,14 @@ class GraphRenderer:
             if isinstance(drone.path[0], State):
                 initial_zone = drone.path[0].zone
                 path: list[Point] = []
-                for p in drone.path:
-                    c = self.zones_renderer[p.zone.name].center - DRONE_SIZE // 2
+                for i, p in enumerate(drone.path):
+                    if isinstance(p, State):
+                        c = self.zones_renderer[p.zone.name].center - DRONE_SIZE // 2
+                    else:
+                        prev = self.zones_renderer[drone.path[i - 1].zone.name]
+                        n = self.zones_renderer[drone.path[i + 1].zone.name]
+                        d = (n.center - prev.center) / 2
+                        c = prev.center + d  - DRONE_SIZE // 2
                     path.append(c)
                 self.drones_renderer.append(
                     DroneRenderer(
@@ -45,9 +52,12 @@ class GraphRenderer:
                         path
                     )
                 )
+        self.colors = []
+        for _ in self.connections:
+            self.colors.append((randint(0, 255), randint(0, 255), randint(0, 255)))
 
     def render(self, screen: pygame.Surface, camera: Camera) -> None:
-        for conn in self.connections.values():
+        for id, conn in enumerate(self.connections.values()):
             zone_a, zone_b = conn.zones_names()
             origin_p = (
                 self.zones_renderer[zone_a].center.x,
@@ -59,7 +69,7 @@ class GraphRenderer:
             )
             pygame.draw.line(
                 screen,
-                (0, 0, 0),
+                self.colors[id],
                 origin_p,
                 end_p,
                 2
