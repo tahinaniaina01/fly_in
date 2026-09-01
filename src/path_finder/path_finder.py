@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 11:13:07 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 11:18:49 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -18,14 +18,15 @@ from models.graph import Graph
 from models.zone import Zone
 from models.connection import Connection
 from heapq import heappop, heappush
-from ..models.state import State
+from models.state import State, ConnState
+
 
 @dataclass
 class PathFinder:
     graph: Graph
     reservations = Reservation()
 
-    def get_path(self, start_time: int = 0) -> list[State]:
+    def get_path(self, start_time: int = 0) -> list[State | ConnState]:
         
         if (
             self.graph is None or
@@ -118,8 +119,8 @@ class PathFinder:
                 counter += 1
         return counter
 
-    def _construct_path(self, start: State, end: State, previous: dict[State, State]) -> list[State]:
-        paths: list[State] = [end]
+    def _construct_path(self, start: State, end: State, previous: dict[State, State]) -> list[State | ConnState]:
+        paths: list[State | ConnState] = [end]
         cur: State = end
         while cur != start:
             n = cur

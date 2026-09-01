@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 10:54:47 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 12:15:34 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -16,6 +16,7 @@ from sys import argv
 from parser import Parser
 from utils import WIN_HEIGHT, WIN_WIDTH
 from path_finder.path_finder import PathFinder
+from models.drone import Drone
 
 if __name__ == '__main__':
     if len(argv) != 2:
@@ -24,12 +25,16 @@ if __name__ == '__main__':
     parser = Parser()
     try:
         nb_drones, graph = parser.parse(argv[1])
+        if nb_drones is None:
+            raise Exception("missing nb_drones")
         print(f"nombres de drones: {nb_drones}\n")
         path_finder = PathFinder(graph)
+        drones = []
 
-        for i in range(1, 5):
-            print(f"drone {i}:")
+        for i in range(1, nb_drones + 1):
             path = path_finder.get_path()
+            drone = Drone(i, path)
+            drones.append(drone)
             for p in path:
                 print(p)
             print()
