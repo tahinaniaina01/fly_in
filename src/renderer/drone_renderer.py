@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/09/01 12:25:02 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 15:16:24 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 15:17:59 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -47,7 +47,7 @@ class DroneRenderer:
         if self.is_moving:
             return False
 
-        if self.step < len(self.path):
+        if self.step < len(self.path) - 1:
             self.step += 1
         self._move_start = self.coord
         self._move_end = self.path[self.step]
