@@ -44,12 +44,16 @@ class DroneRenderer:
 
 
 
-    def move(self) -> bool:
+    def move(self, dir: int = 1) -> bool:
         if self.is_moving:
             return False
 
-        if self.step < len(self.path) - 1:
+        if self.step < len(self.path) - 1 and dir == 1:
             self.step += 1
+        elif self.step > 0 and dir == -1:
+            self.step -= 1
+        elif dir == 0:
+            self.step = 0
         self._move_start = self.coord
         self._move_end = self.path[self.step]
         self._start_time = time()

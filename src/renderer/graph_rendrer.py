@@ -79,8 +79,8 @@ class GraphRenderer:
         for drone in self.drones_renderer:
             drone.render(screen, camera)
 
-    def move(self) -> None:
+    def move(self, dir: int = 1) -> None:
         for drone in self.drones_renderer:
-            drone.move()
+            drone.move(dir)
         
 

@@ -27,14 +27,19 @@ class App:
         self.graph = Graph
         self.camera = Camera()
         self.graph_renderer = GraphRenderer(graph, drones)
+        
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             if event.type == pygame.KEYUP:
-                if event.key == 32:
+                if event.key == ord('n'):
                     self.graph_renderer.move()
+                if event.key == ord('p'):
+                    self.graph_renderer.move(-1)
+                if event.key == ord('r'):
+                    self.graph_renderer.move(0)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
