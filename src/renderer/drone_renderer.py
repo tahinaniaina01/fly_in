@@ -45,7 +45,7 @@ class DroneRenderer:
 
 
     def move(self, dir: int = 1) -> bool:
-        if self.is_moving:
+        if self.is_moving and dir != 0:
             return False
 
         if self.step < len(self.path) - 1 and dir == 1:

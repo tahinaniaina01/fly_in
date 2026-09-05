@@ -27,17 +27,21 @@ class App:
         self.graph = Graph
         self.camera = Camera()
         self.graph_renderer = GraphRenderer(graph, drones)
-        
+        self.auto = False
+
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             if event.type == pygame.KEYUP:
-                if event.key == ord('n'):
-                    self.graph_renderer.move()
-                if event.key == ord('p'):
-                    self.graph_renderer.move(-1)
+                if event.key == ord('a'):
+                    self.auto = not self.auto
+                if not self.auto:
+                    if event.key == ord('n'):
+                        self.graph_renderer.move()
+                    if event.key == ord('p'):
+                        self.graph_renderer.move(-1)
                 if event.key == ord('r'):
                     self.graph_renderer.move(0)
 
@@ -50,11 +54,11 @@ class App:
             self.camera.move(-1, 0)
         if keys[pygame.K_RIGHT]:
             self.camera.move(1, 0)
-        if keys[pygame.K_a]:
+        if keys[pygame.K_i]:
             self.camera.zoom_in()
-        if keys[pygame.K_z]:
+        if keys[pygame.K_o]:
             self.camera.zoom_out()
-        if keys[pygame.K_q]:
+        if keys[pygame.K_ESCAPE]:
             self.running = False
             
 
@@ -65,10 +69,12 @@ class App:
         self.graph_renderer.render(self.screen, self.camera)
 
     def update(self):
+        if self.auto:
+            self.graph_renderer.move()
         pygame.display.flip()
 
     def run(self):
-        self.screen = pygame.display.set_mode((self.width, self.height))
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.running = True
         while self.running:
             self.handle_event()
