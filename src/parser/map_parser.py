@@ -41,7 +41,7 @@ class Parser:
                 continue
             if self._parse_connection(line_nu, line[0]):
                 continue
-            raise ParseError(line_nu, "Invalid syntax")
+            raise ParseError(line_nu, f"-> {line_val}")
 
         return (self.nb_drones, self.graph)
 
@@ -51,6 +51,8 @@ class Parser:
                 n = line.split(':', 1)[1].strip()
                 try:
                     num = int(n)
+                    if num < 0:
+                        raise ValueError("Invalid number of drones")
                     self.nb_drones = num
                 except Exception as e:
                     raise ParseError(line_nu + 1, str(e))
@@ -60,6 +62,8 @@ class Parser:
                     "The first line must be nb_drones: <number>"
                 )
             return True
+        elif self.nb_drones is not None and line.startswith("nb_drones:"):
+            raise ParseError(line_nu + 1, "Duplicate nb_drones declaration")
         return False
 
     def _parse_zone(self, line_nu: int, line: str) -> bool:

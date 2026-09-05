@@ -74,7 +74,7 @@ class App:
         pygame.display.flip()
 
     def run(self):
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((self.width, self.height))
         self.running = True
         while self.running:
             self.handle_event()

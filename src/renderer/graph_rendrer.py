@@ -69,7 +69,7 @@ class GraphRenderer:
             )
             pygame.draw.line(
                 screen,
-                self.colors[id],
+                (20, 20, 20),
                 origin_p,
                 end_p,
                 2
