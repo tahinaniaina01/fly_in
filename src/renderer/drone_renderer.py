@@ -75,7 +75,6 @@ class DroneRenderer:
             self.is_moving = False
 
     def render(self, screen: Surface, camera: Camera) -> None:
-        self.update()
         self.surface = transform.scale(
             self.surface,
             (self.size * camera.zoom, self.size * camera.zoom)
@@ -86,4 +85,5 @@ class DroneRenderer:
             self.surface,
             (c.x, c.y)
         )
+        self.update()
         
