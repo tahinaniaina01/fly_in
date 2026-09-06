@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 15:29:31 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 16:07:08 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/01 17:14:04 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -48,8 +48,8 @@ class ZoneRenderer:
             self.color = (233, 86, 238)
         self.surface.fill(self.color)
 
-        self.label = zone.name
-        # self.label = f"max: {zone.capacity} d"
+        # self.label = zone.name
+        self.label = f"max: {zone.capacity} d"
         self.font = pygame.font.SysFont(None, 24)
         self.text_color = (0, 0, 0)
 

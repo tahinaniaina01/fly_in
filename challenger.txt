@@ -1,0 +1,128 @@
+# MULTI-PATH MESH
+# Grille maillée offrant de nombreux chemins parallèles et redondants.
+# Les connexions verticales permettent aux drones de changer de "voie"
+# à tout moment, évitant les vrais goulots d'étranglement.
+
+nb_drones: 30
+
+# === START / END ===
+start_hub: start 0 0 [color=green max_drones=30]
+end_hub: goal 7 0 [color=rainbow max_drones=30]
+
+# === COLONNE 1 ===
+hub: m1a 1 -2 [zone=restricted color=brown max_drones=3]
+hub: m1b 1 -1 [zone=normal color=cyan max_drones=4]
+hub: m1c 1 0  [zone=priority color=gold max_drones=6]
+hub: m1d 1 1  [zone=normal color=cyan max_drones=4]
+hub: m1e 1 2  [zone=restricted color=brown max_drones=3]
+
+# === COLONNE 2 ===
+hub: m2a 2 -2 [zone=restricted color=brown max_drones=3]
+hub: m2b 2 -1 [zone=normal color=cyan max_drones=4]
+hub: m2c 2 0  [zone=priority color=gold max_drones=6]
+hub: m2d 2 1  [zone=normal color=cyan max_drones=4]
+hub: m2e 2 2  [zone=restricted color=brown max_drones=3]
+
+# === COLONNE 3 ===
+hub: m3a 3 -2 [zone=restricted color=maroon max_drones=2]
+hub: m3b 3 -1 [zone=normal color=cyan max_drones=4]
+hub: m3c 3 0  [zone=priority color=gold max_drones=5]
+hub: m3d 3 1  [zone=normal color=cyan max_drones=4]
+hub: m3e 3 2  [zone=restricted color=maroon max_drones=2]
+
+# === COLONNE 4 ===
+hub: m4a 4 -2 [zone=restricted color=maroon max_drones=2]
+hub: m4b 4 -1 [zone=normal color=cyan max_drones=4]
+hub: m4c 4 0  [zone=priority color=gold max_drones=5]
+hub: m4d 4 1  [zone=normal color=cyan max_drones=4]
+hub: m4e 4 2  [zone=restricted color=maroon max_drones=2]
+
+# === COLONNE 5 ===
+hub: m5a 5 -2 [zone=restricted color=brown max_drones=3]
+hub: m5b 5 -1 [zone=normal color=cyan max_drones=4]
+hub: m5c 5 0  [zone=priority color=gold max_drones=6]
+hub: m5d 5 1  [zone=normal color=cyan max_drones=4]
+hub: m5e 5 2  [zone=restricted color=brown max_drones=3]
+
+# === COLONNE 6 ===
+hub: m6a 6 -2 [zone=restricted color=brown max_drones=3]
+hub: m6b 6 -1 [zone=normal color=cyan max_drones=4]
+hub: m6c 6 0  [zone=priority color=gold max_drones=6]
+hub: m6d 6 1  [zone=normal color=cyan max_drones=4]
+hub: m6e 6 2  [zone=restricted color=brown max_drones=3]
+
+# === CONNEXIONS: START -> COLONNE 1 (5 entrées possibles) ===
+connection: start-m1a
+connection: start-m1b
+connection: start-m1c [max_link_capacity=6]
+connection: start-m1d
+connection: start-m1e
+
+# === CONNEXIONS HORIZONTALES (ligne par ligne, col1->col6) ===
+connection: m1a-m2a
+connection: m2a-m3a [max_link_capacity=2]
+connection: m3a-m4a [max_link_capacity=2]
+connection: m4a-m5a
+connection: m5a-m6a
+
+connection: m1b-m2b
+connection: m2b-m3b
+connection: m3b-m4b
+connection: m4b-m5b
+connection: m5b-m6b
+
+connection: m1c-m2c [max_link_capacity=6]
+connection: m2c-m3c [max_link_capacity=5]
+connection: m3c-m4c [max_link_capacity=5]
+connection: m4c-m5c [max_link_capacity=5]
+connection: m5c-m6c [max_link_capacity=6]
+
+connection: m1d-m2d
+connection: m2d-m3d
+connection: m3d-m4d
+connection: m4d-m5d
+connection: m5d-m6d
+
+connection: m1e-m2e
+connection: m2e-m3e [max_link_capacity=2]
+connection: m3e-m4e [max_link_capacity=2]
+connection: m4e-m5e
+connection: m5e-m6e
+
+# === CONNEXIONS VERTICALES (changement de voie à chaque colonne) ===
+connection: m1a-m1b
+connection: m1b-m1c
+connection: m1c-m1d
+connection: m1d-m1e
+
+connection: m2a-m2b
+connection: m2b-m2c
+connection: m2c-m2d
+connection: m2d-m2e
+
+connection: m3a-m3b
+connection: m3b-m3c
+connection: m3c-m3d
+connection: m3d-m3e
+
+connection: m4a-m4b
+connection: m4b-m4c
+connection: m4c-m4d
+connection: m4d-m4e
+
+connection: m5a-m5b
+connection: m5b-m5c
+connection: m5c-m5d
+connection: m5d-m5e
+
+connection: m6a-m6b
+connection: m6b-m6c
+connection: m6c-m6d
+connection: m6d-m6e
+
+# === CONNEXIONS: COLONNE 6 -> GOAL (5 sorties possibles) ===
+connection: m6a-goal
+connection: m6b-goal
+connection: m6c-goal [max_link_capacity=6]
+connection: m6d-goal
+connection: m6e-goal
