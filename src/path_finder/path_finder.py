@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 17:08:50 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 16:54:18 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -31,7 +31,7 @@ class PathFinder:
         if (
             self.graph is None or
             self.graph.start_zone is None or
-            self.graph.start_zone is None
+            self.graph.end_zone is None
         ):
             raise Exception("invalid graph")
         visited: set[State] = set()

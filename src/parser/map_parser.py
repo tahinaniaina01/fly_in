@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/02 11:22:01 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 10:13:58 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 16:46:20 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -52,10 +52,10 @@ class Parser:
                 try:
                     num = int(n)
                     if num < 0:
-                        raise ValueError("Invalid number of drones")
+                        raise ParseError(line_nu + 1, "Invalid number of drones")
                     self.nb_drones = num
                 except Exception as e:
-                    raise ParseError(line_nu + 1, str(e))
+                    raise ParseError(line_nu + 1, "Invalid number of drones")
             else:
                 raise ParseError(
                     line_nu + 1,
