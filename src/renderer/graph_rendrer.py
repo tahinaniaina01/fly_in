@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 15:37:44 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 16:30:36 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -69,7 +69,7 @@ class GraphRenderer:
             )
             pygame.draw.line(
                 screen,
-                (20, 20, 20),
+                (255, 255, 255),
                 origin_p,
                 end_p,
                 2

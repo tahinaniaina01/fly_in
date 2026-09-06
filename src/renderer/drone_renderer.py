@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/09/01 12:25:02 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 15:45:07 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 16:29:44 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -50,7 +50,7 @@ class DroneRenderer:
         self._move_start = self.coord
         self._move_end: Point = self.coord
         self._start_time = 0.0
-        self._move_duration = 0.8
+        self._move_duration = 1
         self.path: list[Point] = path
 
         self.bird_type: int = randint(0, self.FRAME_ROWS - 1)

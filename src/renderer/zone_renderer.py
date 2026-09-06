@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 15:29:31 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 15:22:18 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 16:14:12 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -53,15 +53,15 @@ class ZoneRenderer:
             self.image_coord = (0, 0)
         if zone.is_end:
             self.image_coord = (1, 0)
-        self.surface.fill(self.color)
+        # self.surface.fill(self.color)
 
         self._fallback_surface = Surface((self.size, self.size), flags=0)
-        self._fallback_surface.fill(self.color)
+        self._fallback_surface.fill((255, 0, 0))
 
         # self.label = zone.name
         self.label = f"max: {zone.capacity} d"
         self.font = font.SysFont(None, 24)
-        self.text_color = (0, 0, 0)
+        self.text_color = (255, 255, 255)
 
         
 

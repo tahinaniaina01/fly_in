@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 13:31:11 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 16:28:27 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -16,6 +16,7 @@ from models.graph import Graph
 from .camera import Camera
 from .graph_rendrer import GraphRenderer
 from models.drone import Drone
+import os
 
 class App:
     def __init__(self, graph: Graph, drones: list[Drone] = [], w: int = 800, h: int = 600):
@@ -28,7 +29,13 @@ class App:
         self.camera = Camera()
         self.graph_renderer = GraphRenderer(graph, drones)
         self.auto = False
+        self.bg_path = os.path.join("assets", "bg.png")
 
+
+    def _load_background(self) -> pygame.Surface:
+        bg = pygame.image.load(self.bg_path).convert()
+        bg = pygame.transform.scale(bg, (self.w, self.h))
+        return bg
 
     def handle_event(self) -> None:
         for event in pygame.event.get():
@@ -65,7 +72,7 @@ class App:
     def display(self) -> None:
         if self.screen is None:
             return
-        self.screen.fill(pygame.Color(190, 190, 190))
+        # self.screen.fill(pygame.Color(190, 190, 190))
         self.graph_renderer.render(self.screen, self.camera)
 
     def update(self):
@@ -78,7 +85,12 @@ class App:
         # self.screen = pygame.display.set_mode((self.width, self.height))
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.running = True
+        info = pygame.display.Info()
+        self.w = info.current_w
+        self.h = info.current_h
+        self.bg = self._load_background()
         while self.running:
+            self.screen.blit(self.bg, (0, 0))
             self.handle_event()
             self.display()
             self.update()
