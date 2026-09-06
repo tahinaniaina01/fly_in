@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 13:12:18 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 16:50:44 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 17:22:06 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -34,6 +34,9 @@ if __name__ == '__main__':
         for i in range(1, nb_drones + 1):
             path = path_finder.get_path()
             drone = Drone(i, path)
+            print("~"*10)
+            print(f"drone {drone.id}: {path}")
+            print("~"*10)
             drones.append(drone)
 
         app = App(graph, drones, WIN_WIDTH, WIN_HEIGHT)

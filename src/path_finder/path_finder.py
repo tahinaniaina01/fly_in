@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:03:54 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 16:54:18 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 17:21:56 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -61,6 +61,11 @@ class PathFinder:
             counter = self._try_to_move(
                 visited, heap, previous, cur_state, cost, counter
             )
+            # print("-"*10)
+            # print(previous)
+            # print('*'*10)
+            # print(visited)
+            # print("-"*10)
 
         raise Exception("Path not found")
 
