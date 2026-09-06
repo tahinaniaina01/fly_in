@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/09/01 12:25:02 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 13:59:01 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 15:45:07 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -50,7 +50,7 @@ class DroneRenderer:
         self._move_start = self.coord
         self._move_end: Point = self.coord
         self._start_time = 0.0
-        self._move_duration = 0.5
+        self._move_duration = 0.8
         self.path: list[Point] = path
 
         self.bird_type: int = randint(0, self.FRAME_ROWS - 1)
@@ -105,7 +105,7 @@ class DroneRenderer:
     def _current_surface(self) -> Surface:
         try:
             frames = self._get_bird_frames()
-        except (PygameError, FileNotFoundError):
+        except (PygameError, FileNotFoundError, FileExistsError):
             return self._fallback_surface
 
         if not frames:
@@ -124,23 +124,19 @@ class DroneRenderer:
             self.step -= 1
         elif dir == 0:
             self.step = 0
-        else:
-            return False
         self._move_start = self.coord
         self._move_end = self.path[self.step]
         self._start_time = time()
-        if self._move_start != self._move_end:
-            self.is_moving = True
+        self.is_moving = True
         self._update_direction()
 
         return True
 
     def update(self) -> None:
-        self._update_animation()
-
         if not self.is_moving:
             return
 
+        self._update_animation()
         elapsed = time() - self._start_time
         t = min((elapsed / self._move_duration), 1.0)
 

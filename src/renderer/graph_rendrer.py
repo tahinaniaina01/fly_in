@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:00:56 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 14:37:43 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 15:37:44 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -80,8 +80,8 @@ class GraphRenderer:
             drone.render(screen, camera)
 
     def move(self, dir: int = 1) -> None:
+        r = []
         for drone in self.drones_renderer:
-            r = []
             r.append(drone.move(dir))
         if any(r):
             self.step += 1
