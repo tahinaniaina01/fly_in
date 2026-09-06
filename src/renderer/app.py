@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/01 15:36:53 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 12:42:08 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -72,6 +72,7 @@ class App:
         if self.auto:
             self.graph_renderer.move()
         pygame.display.flip()
+        print(self.graph_renderer.step)
 
     def run(self):
         self.screen = pygame.display.set_mode((self.width, self.height))
