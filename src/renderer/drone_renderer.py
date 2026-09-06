@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/09/01 12:25:02 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 13:26:52 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 13:59:01 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -129,7 +129,8 @@ class DroneRenderer:
         self._move_start = self.coord
         self._move_end = self.path[self.step]
         self._start_time = time()
-        self.is_moving = True
+        if self._move_start != self._move_end:
+            self.is_moving = True
         self._update_direction()
 
         return True

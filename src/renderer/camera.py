@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/15 13:10:58 by trakotos            #+#    #+#            #
-#   Updated: 2026/06/15 14:35:12 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 14:38:58 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -19,8 +19,8 @@ class Camera:
     x: int = 0
     y: int = 0
     zoom: float = 1.0
-    max_zoom: float = 50
-    min_zoom: float = 0.1
+    max_zoom: float = 5
+    min_zoom: float = 0.5
     velocity: int = 5
 
     def move(self, dx: int, dy: int) -> None:

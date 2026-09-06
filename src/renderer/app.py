@@ -7,7 +7,7 @@
 #   By: trakotos <trakotos@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/06/01 14:14:36 by trakotos            #+#    #+#            #
-#   Updated: 2026/09/06 12:42:08 by trakotos           ###   ########.fr      #
+#   Updated: 2026/09/06 13:31:11 by trakotos           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -75,7 +75,8 @@ class App:
         print(self.graph_renderer.step)
 
     def run(self):
-        self.screen = pygame.display.set_mode((self.width, self.height))
+        # self.screen = pygame.display.set_mode((self.width, self.height))
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.running = True
         while self.running:
             self.handle_event()
